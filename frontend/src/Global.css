@@ -1,0 +1,17 @@
+:root {
+    --color-white: #ffffff;
+    --color-light-gray: #f5f5f5;
+    --color-lighter-gray: #f0f0f0;
+    --color-gray: #e6e6e6;
+    --color-dark: #222222;
+    --color-lighter-dark: hsl(0, 0%, 50%);
+    --colors-actions-ghost-dark-hover-label: #727272;
+    --colors-navigation-primary-enabled-stroke: #e6e6e6;
+
+  }
+
+
+  /* This was just for testing, but I might leave it as it it */
+.mb-3{
+  margin-block: 1rem;
+}

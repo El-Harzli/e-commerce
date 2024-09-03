@@ -1,0 +1,218 @@
+/* I've asked ChatGPT for a sliding animation instead of a simple display none => display block */
+
+.search-bar {
+    position: absolute;
+    top: 0;
+    left: -100%; /* Start the search bar off-screen */
+    width: 100%;
+    min-height: 100vh;
+    background: var(--color-lighter-gray);
+    z-index: 99;
+    display: block;
+    opacity: 0;
+    transition: left 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    padding: 1rem;
+
+}
+
+.search-bar.active {
+    left: 0; 
+    opacity: 1;
+
+}
+
+/* search-container and Input Field */
+.search-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+}
+
+.search-input-field{
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search-input-field .bx-search{
+    position: absolute;
+    line-height: 1;
+    font-size: 1.5rem;
+    margin-left: 0.5rem;
+    color: var(--color-gray);
+    padding: 0.2rem;
+    border-radius: 0.5rem;
+    align-content: center;
+}
+
+.search-input-field .bx-search.active{
+    color: var(--color-dark);
+    transition: 0.3s ease;
+}
+
+.search-input-field .bx-search.active:hover{
+    background: var(--color-lighter-gray) ;
+}
+
+.search-input-field input{
+    padding-block: 0.8rem;
+    padding-inline: 2.5rem 1rem;
+    font-size: 1rem;
+    width: 100%;
+    border-radius: 0.5rem;
+    border: 1px solid black;
+
+}
+
+
+.search-input-field .bx-x{
+    display: none;
+}
+
+.search-input-field .bx-x.active{
+    display: block;
+    position: absolute;
+    right: 0;
+    line-height: 1;
+    font-size: 1.5rem;
+    cursor: pointer;
+    margin-right: 0.2rem;
+    padding: 0.2rem;
+    border-radius: 0.5rem;
+    transition: 0.3s ease;
+}
+
+.search-input-field .bx-x.active:hover{
+    background: var(--color-lighter-gray);
+}
+
+
+
+
+.btn-cancel{
+    height: 100%;
+    border-radius: 0.5rem;
+}
+
+.btn-cancel button{
+    display: inline-block;
+    width: 100%;
+    border: none;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 0.8rem 1.5rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: 0.3s ease;
+    background: none;
+}
+
+.btn-cancel button:hover{
+    background: var(--color-gray);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 
+.result-items{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--colors-navigation-primary-enabled-stroke);
+    width: 100%;
+    height: 45px;
+    padding-inline: 0.5rem;
+
+}
+.result-item{
+    color: var(--color-lighter-dark);
+    height: 100%;
+    text-align: center;
+    align-content: center;
+    padding-inline: 0.4rem;
+    
+}
+
+.result-item.active{
+    color: var(--color-dark);
+    position: relative;
+    cursor: pointer;
+}
+
+.result-item::after{
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: black;
+    transition: width .3s ease;
+}
+
+.result-item.active::after{
+    width: 100%;
+} */
+
+
+
+
+
+.search-result{
+    margin-top: 1.5rem;
+    /* background: blue; */
+}
+
+
+/* Existing styles remain the same */
+
+/* Updated result-items and underline styles */
+.category-result-items {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--colors-navigation-primary-enabled-stroke);
+    width: 100%;
+    height: 30px;
+    position: relative; /* To position the underline absolutely */
+    margin-bottom: 1rem;
+}
+
+.category-result-item {
+    color: var(--color-lighter-dark);
+    height: 100%;
+    text-align: center;
+    align-content: center;
+    cursor: pointer;
+}
+
+.category-result-item.active {
+    color: var(--color-dark);
+}
+
+.underline {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    background-color: black;
+    transition: left 0.3s ease, width 0.3s ease;
+    width: 0;
+}
+
+/* Transition for moving and resizing the underline */
+.category-result-item.active + .underline {
+    width: 100%; /* This is handled in JSX based on active item */
+}

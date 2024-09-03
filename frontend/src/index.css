@@ -1,0 +1,25 @@
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    line-height: 1.2;
+    -webkit-font-smoothing: antialiased;
+    font-family: 'poppins', sans-serif;
+    min-height: 100vh;
+  }
+  
+  li{
+    list-style: none;
+  }
+  
+  a{
+    text-decoration: none;
+  }
+
+  
+  html {
+    scroll-behavior: smooth;
+  }

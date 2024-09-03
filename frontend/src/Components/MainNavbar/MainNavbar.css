@@ -1,0 +1,31 @@
+.main-navbar i{
+    font-size: 24px;
+    color: black;
+}
+.main-navbar{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0px 1px 0px 0px var(--color-gray);
+}
+
+.main-navbar .icon{
+    display: inline-block;
+    padding: 10px;
+    vertical-align: middle;
+    border-radius: 0.4rem;
+    transition: 0.3s ease;
+    cursor: pointer;
+}
+
+
+.main-navbar .icon:hover{
+    background: var(--color-light-gray) ;
+}
+
+.main-navbar .logo{
+    font-size: 30px;
+    font-weight: 600;
+}
+
+
