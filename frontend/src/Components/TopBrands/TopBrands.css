@@ -1,0 +1,85 @@
+.top-brands {
+    width: 95%;
+    margin-inline: auto;
+    margin-top: 5%;
+}
+
+.top-brands .top-brands-header {
+    min-width: fit-content;
+    width: 75%;
+    margin-inline: auto;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 1rem; /* Added space below the header */
+}
+
+.top-brands .top-brands-category {
+    margin-block: 1.5rem;
+}
+
+.top-brands .top-brands-category-items {
+    display: flex;
+    width: 100%; /* Changed from 95% to 100% for full width */
+    padding-inline: 2.5%;
+    justify-content: space-between;
+    border-block: 1px solid var(--color-gray);
+    align-items: center; /* Added to center items vertically */
+}
+
+.top-brands .top-brands-category-item {
+    min-width: fit-content;
+    cursor: pointer;
+    color: var(--colors-actions-ghost-dark-hover-label);
+    padding: 0.5rem;
+}
+
+.top-brands .top-brands-category-item.active {
+    color: var(--color-dark);
+}
+
+
+
+
+
+
+
+
+.image-container {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.image-container img {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
+  transform: scale(1);
+  transition: transform 0.1s ease-out;
+}
+
+.image-container img:hover {
+  /* transform: scale(1.2); */
+}
+
+
+
+
+.top-brands .top-brands-items{
+    display: grid;
+    width: 100%;
+    height: auto;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 0.5rem;
+    background: white;
+    padding-block: 3rem;
+}

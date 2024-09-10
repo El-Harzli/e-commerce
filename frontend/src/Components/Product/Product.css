@@ -1,0 +1,90 @@
+.product {
+    width: 100%;
+    height: fit-content;
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+    overflow: hidden;
+    position: relative;
+}
+
+.product .product-image{
+    width: 100%;
+    height: 300px;
+}
+
+.product .product-image img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+}
+
+
+
+.product .product-info div{
+    margin-block: 0.5rem;
+}
+
+.product .product-brand{
+    font-weight: 500;
+}
+
+.product .product-name{
+}
+
+.product .product-prices{
+    padding-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    
+}
+.product .product-prices .product-old-price{
+    font-size: 1rem;
+    font-weight: 300;
+    text-decoration: line-through;
+    color: var(--colors-actions-ghost-dark-hover-label);
+
+}
+.product .product-prices .product-new-price{
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+
+
+.product-add-to-wishlist{
+    border: none;
+    background: transparent;
+    position: absolute;
+    top: 2.5%;
+    right: 5%;
+    height: 1.5rem; /*  Same height  */
+    width: 1.5rem;  /*  Same height  */
+    cursor: pointer;
+}
+
+.product-add-to-wishlist i{
+    position: absolute;
+    inset: 0;
+    font-size: 1.5rem; /*  Same height  */
+}
+
+.product-add-to-wishlist .bxs-heart{
+    opacity: 0;
+    transition: .3s ease;
+}
+
+.product-add-to-wishlist .bxs-heart:hover{
+    opacity: 1;
+}
+
+
+.product-add-to-wishlist .bx-heart{
+    opacity: 1;
+    transition: .3s ease;
+}
+
+.product-add-to-wishlist .bx-heart:hover{
+    opacity: 0;
+}

@@ -5,13 +5,15 @@
     top: 0;
     left: -100%; /* Start the search bar off-screen */
     width: 100%;
-    min-height: 100vh;
+    height: calc(var(--vh, 1vh) * 100); /* Use dynamic height based on JS calculation */
     background: var(--color-lighter-gray);
     z-index: 99;
     display: block;
     opacity: 0;
     transition: left 0.3s ease-in-out, opacity 0.3s ease-in-out;
     padding: 1rem;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
 
 }
 

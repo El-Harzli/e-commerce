@@ -16,6 +16,29 @@ function SecondaryNavbar({
     }
   }, [activeCategory]);
 
+  useEffect(() => {
+    if(isSecondaryNavbarActive){
+      document.body.style.overflow = "hidden";
+    }
+    else{
+      document.body.style.overflow = "";
+    }
+  }, [isSecondaryNavbarActive])
+
+  useEffect(() => {
+    function setDynamicHeight() {
+      const vh = window.innerHeight * 0.01; 
+      document.documentElement.style.setProperty('--vh', `${vh}px`);
+    }
+  
+    setDynamicHeight();
+  
+    // Recalculate the height on resize (e.g., when the user scrolls or rotates the screen)
+    window.addEventListener('resize', setDynamicHeight);
+  
+    return () => window.removeEventListener('resize', setDynamicHeight);
+  }, []);
+
   return (
     <nav
       className={`secondary-navbar ${isSecondaryNavbarActive ? "active" : ""}`}

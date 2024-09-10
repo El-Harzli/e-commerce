@@ -8,6 +8,7 @@ function SearchBar({ isSearchbarMenuActive, setIsSearchbarMenuActive }) {
   const [searchValue, setSearchValue] = useState("");
   const [activeCategory, setActiveCategory] = useState("Menswear");
   const underlineRef = useRef(null);
+  const mySearchInput = useRef(null);
 
   const [searchHistory, setSearchHistory] = useState([]);
   const handleSubmitSearch = () => {
@@ -15,11 +16,7 @@ function SearchBar({ isSearchbarMenuActive, setIsSearchbarMenuActive }) {
   };
 
   const handleOnSearchInputChange = (e) => {
-    if (!e.target.value) {
-      setIsSearchBarEmpty(true);
-    } else {
-      setIsSearchBarEmpty(false);
-    }
+    setIsSearchBarEmpty(e.target.value.trim() === "");
     setSearchValue(e.target.value);
   };
 
@@ -36,17 +33,43 @@ function SearchBar({ isSearchbarMenuActive, setIsSearchbarMenuActive }) {
     const activeItem = document.querySelector(".category-result-item.active");
     if (activeItem && underlineRef.current) {
       const { offsetLeft, clientWidth } = activeItem;
-      underlineRef.current.style.width = `calc(${clientWidth}px)`;
-      underlineRef.current.style.left = `calc(${offsetLeft}px`;
+      underlineRef.current.style.width = `${clientWidth}px`;
+      underlineRef.current.style.left = `${offsetLeft}px`;
     }
   }, [activeCategory]);
 
+  useEffect(() => {
+    if (isSearchbarMenuActive) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+  }, [isSearchbarMenuActive]);
+
+  useEffect(() => {
+    function setDynamicHeight() {
+      const vh = window.innerHeight * 0.01; 
+      document.documentElement.style.setProperty('--vh', `${vh}px`);
+    }
+  
+    setDynamicHeight();
+  
+    // Recalculate the height on resize (e.g., when the user scrolls or rotates the screen)
+    window.addEventListener('resize', setDynamicHeight);
+    
+    // Focus the input field when the component mounts
+    if (mySearchInput.current) {
+      mySearchInput.current.focus();
+    }
+  
+    return () => window.removeEventListener('resize', setDynamicHeight);
+  }, []); // Empty dependency array to run only once on mount
 
   const handleSearchInputKeyDown = (e) => {
-        if (e.key === "Enter" || e.code === "Enter" || e.keyCode === 13) {
-          handleSubmitSearch();
-        }
-  }
+    if (e.key === "Enter") {
+      handleSubmitSearch();
+    }
+  };
 
   return (
     <div className={`search-bar ${isSearchbarMenuActive ? "active" : ""}`}>
@@ -54,6 +77,7 @@ function SearchBar({ isSearchbarMenuActive, setIsSearchbarMenuActive }) {
         <div className="search-input-field">
           <i onClick={handleSubmitSearch} className={`bx bx-search ${isSearchBarEmpty ? "" : "active"}`}></i>
           <input
+            ref={mySearchInput}
             onKeyDown={handleSearchInputKeyDown}
             value={searchValue}
             onChange={handleOnSearchInputChange}
@@ -76,25 +100,19 @@ function SearchBar({ isSearchbarMenuActive, setIsSearchbarMenuActive }) {
           <ul className="category-result-items">
             <li
               onClick={() => handleChangeCategoryResult("Womenswear")}
-              className={`category-result-item ${
-                activeCategory === "Womenswear" ? "active" : ""
-              }`}
+              className={`category-result-item ${activeCategory === "Womenswear" ? "active" : ""}`}
             >
               WOMENSWEAR
             </li>
             <li
               onClick={() => handleChangeCategoryResult("Menswear")}
-              className={`category-result-item ${
-                activeCategory === "Menswear" ? "active" : ""
-              }`}
+              className={`category-result-item ${activeCategory === "Menswear" ? "active" : ""}`}
             >
               MENSWEAR
             </li>
             <li
               onClick={() => handleChangeCategoryResult("Kidswear")}
-              className={`category-result-item ${
-                activeCategory === "Kidswear" ? "active" : ""
-              }`}
+              className={`category-result-item ${activeCategory === "Kidswear" ? "active" : ""}`}
             >
               KIDSWEAR
             </li>
@@ -119,15 +137,9 @@ function SearchBar({ isSearchbarMenuActive, setIsSearchbarMenuActive }) {
               {my_products
                 .filter(
                   (product) =>
-                    product.name
-                      .toLowerCase()
-                      .includes(searchValue.toLowerCase()) ||
-                    product.category
-                      .toLowerCase()
-                      .includes(searchValue.toLowerCase()) ||
-                    product.brand
-                      .toLowerCase()
-                      .includes(searchValue.toLowerCase())
+                    product.name.toLowerCase().includes(searchValue.toLowerCase()) ||
+                    product.category.toLowerCase().includes(searchValue.toLowerCase()) ||
+                    product.brand.toLowerCase().includes(searchValue.toLowerCase())
                 )
                 .map((filteredProduct) => (
                   <SearchedItem className="mb-3" product={filteredProduct} />

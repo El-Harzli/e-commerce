@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import './MainNavbar.css'
+import { Link } from 'react-router-dom'
 
 function MainNavbar({setIsSearchbarMenuActive, setIsSecondaryNavbarActive}) {
   const menuClickHandler = () => {
@@ -15,7 +16,7 @@ function MainNavbar({setIsSearchbarMenuActive, setIsSecondaryNavbarActive}) {
             <i className='bx bx-search' ></i>
           </span>
         </div>
-        <div className="logo">KERIZIA</div>
+        <div className="logo"><Link to={'/'}>KERIZIA</Link></div>
         <div className="right-side">
           <span className="icon icon-heart">
             <i className='bx bx-heart' ></i>
